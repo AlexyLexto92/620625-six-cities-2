@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов» [![Build status][travis-image]][travis-url]
 
 * Студент: [Алексей Толстоног](https://up.htmlacademy.ru/react/2/user/620625).
-* Наставник: `Неизвестно`.
+* Наставник: [Сергей Рубец](https://htmlacademy.ru/profile/amator).
 
 ---
 
