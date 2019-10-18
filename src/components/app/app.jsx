@@ -9,10 +9,10 @@ export const App = (props) => {
   />;
 };
 
-App.propTypes = {
-  title: PropTypes.string.isRequired,
-  coast: PropTypes.number.isRequired,
-  type: PropTypes.oneOf([`Private room`, `Apartment`]),
+App.propTypes=PropTypes.arrayOf(PropTypes.shape({
+  title: PropTypes.string,
+  coast: PropTypes.number,
+  type: PropTypes.string,
   isPremium: PropTypes.bool,
   img: PropTypes.string
-};
+}));

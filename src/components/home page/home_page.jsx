@@ -134,10 +134,10 @@ export const HomePage = (props) => {
     </main>
   </div>;
 };
-HomePage.propTypes = {
-  title: PropTypes.string.isRequired,
-  coast: PropTypes.number.isRequired,
-  type: PropTypes.oneOf([`Private room`, `Apartment`]),
+HomePage.propTypes=PropTypes.arrayOf(PropTypes.shape({
+  title: PropTypes.string,
+  coast: PropTypes.number,
+  type: PropTypes.string,
   isPremium: PropTypes.bool,
   img: PropTypes.string
-};
+}));
