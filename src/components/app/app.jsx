@@ -9,10 +9,14 @@ export const App = (props) => {
   />;
 };
 
-App.propTypes=PropTypes.arrayOf(PropTypes.shape({
-  title: PropTypes.string,
-  coast: PropTypes.number,
-  type: PropTypes.string,
-  isPremium: PropTypes.bool,
-  img: PropTypes.string
-}));
+App.propTypes = {
+  objectsForRent: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string,
+        coast: PropTypes.number,
+        type: PropTypes.string,
+        isPremium: PropTypes.bool,
+        img: PropTypes.string
+      })
+  )
+};

@@ -134,10 +134,14 @@ export const HomePage = (props) => {
     </main>
   </div>;
 };
-HomePage.propTypes=PropTypes.arrayOf(PropTypes.shape({
-  title: PropTypes.string,
-  coast: PropTypes.number,
-  type: PropTypes.string,
-  isPremium: PropTypes.bool,
-  img: PropTypes.string
-}));
+HomePage.propTypes = {
+  objectsForRent: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string,
+        coast: PropTypes.number,
+        type: PropTypes.string,
+        isPremium: PropTypes.bool,
+        img: PropTypes.string
+      })
+  )
+};
