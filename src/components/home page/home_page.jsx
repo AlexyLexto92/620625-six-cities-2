@@ -95,7 +95,7 @@ export const HomePage = (props) => {
                   }
                   <div className="cities__image-wrapper place-card__image-wrapper">
                     <a href="#">
-                      <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place image" />
+                      <img className="place-card__image" src={item.img} width="260" height="200" alt="Place image" />
                     </a>
                   </div>
                   <div className="place-card__info">
@@ -139,4 +139,5 @@ HomePage.propTypes = {
   coast: PropTypes.number.isRequired,
   type: PropTypes.oneOf([`Private room`, `Apartment`]),
   isPremium: PropTypes.bool,
+  img: PropTypes.string
 };

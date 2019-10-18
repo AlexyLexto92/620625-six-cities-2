@@ -14,4 +14,5 @@ App.propTypes = {
   coast: PropTypes.number.isRequired,
   type: PropTypes.oneOf([`Private room`, `Apartment`]),
   isPremium: PropTypes.bool,
+  img: PropTypes.string
 };
