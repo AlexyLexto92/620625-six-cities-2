@@ -1,16 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {HomePage} from './../home page/home_page.jsx';
-export const App = (props) => {
-  debugger
-  const {objectsForRent} = props;
+export const App = ({rents}) => {
   return <HomePage
-    objectsForRent={objectsForRent}
+  rents={rents}
   />;
 };
 
 App.propTypes = {
-  objectsForRent: PropTypes.arrayOf(
+  rents: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string,
         coast: PropTypes.number,

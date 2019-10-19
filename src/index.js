@@ -4,7 +4,7 @@ import {App} from './components/app/app.jsx';
 
 const init = () => {
 
-  const objectsForRent = [
+  const rents = [
     {
       title: `Beautiful & luxurious apartment at great location`,
       coast: 120,
@@ -43,7 +43,7 @@ const init = () => {
   ];
 
   ReactDOM.render(<App
-    objectsForRent={objectsForRent}
+    rents={rents}
   />, document.querySelector(`#root`));
 };
 init();

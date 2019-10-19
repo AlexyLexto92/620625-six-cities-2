@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 export const HomePage = (props) => {
-  const {objectsForRent} = props;
+  const {rents} = props;
   return <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -86,7 +86,7 @@ export const HomePage = (props) => {
             </form>
             <div className="cities__places-list places__list tabs__content">
 
-              {objectsForRent.map((item, index) =>
+              {rents.map((item, index) =>
                 <article className="cities__place-card place-card" key={item.title + index}>
                   {
                     item.isPremium ? <div className="place-card__mark">
@@ -135,7 +135,7 @@ export const HomePage = (props) => {
   </div>;
 };
 HomePage.propTypes = {
-  objectsForRent: PropTypes.arrayOf(
+  rents: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string,
         coast: PropTypes.number,
