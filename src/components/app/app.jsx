@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { HomePage } from './../home page/home_page.jsx';
-export const App = ({ rents }) => (<HomePage
+export const App = ({ rents }) => (
+<HomePage
   rents={rents}
 />);
 
