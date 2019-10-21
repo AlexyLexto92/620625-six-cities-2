@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 export const HomePage = (props) => {
   const {rents} = props;
+  const {onClickHead} = props;
   return <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <a className="header__logo-link header__logo-link--active">
+            <a className="header__logo-link header__logo-link--active" onClick={onClickHead}>
               <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
             </a>
           </div>
@@ -136,12 +137,12 @@ export const HomePage = (props) => {
 };
 HomePage.propTypes = {
   rents: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string,
-        coast: PropTypes.number,
-        type: PropTypes.string,
-        isPremium: PropTypes.bool,
-        img: PropTypes.string
-      })
+    PropTypes.shape({
+      title: PropTypes.string,
+      coast: PropTypes.number,
+      type: PropTypes.string,
+      isPremium: PropTypes.bool,
+      img: PropTypes.string
+    })
   )
 };
