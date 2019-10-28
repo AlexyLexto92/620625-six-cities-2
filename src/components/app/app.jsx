@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {HomePage} from './../home page/home_page.jsx';
-export const App = ({rents}) => {
+export const App = ({offers}) => {
   return <HomePage
   onClickHead = {() => {}}
-  rents={rents}
+  offers={offers}
   />;
 };
 
