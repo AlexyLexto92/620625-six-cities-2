@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const Card = ({ offer, index }) => {
-  const {offer} = offer;
-  const {index} =index;
-  {
-    return (
-      <article className="cities__place-card place-card" key={item.title + index} onMouseEnter={hoverHendler}>
+export const Card = ({ offers, hoverHeandler }) => {
+return(
+    offers.map((item, index) =>
+      <article className="cities__place-card place-card" key={item.title + index} onMouseEnter={hoverHeandler} id={index}>
         {
           item.isPremium ? <div className="place-card__mark">
             <span>Premium</span>
@@ -42,8 +40,9 @@ export const Card = ({ offer, index }) => {
           <p className="place-card__type">{item.type}</p>
         </div>
       </article>)
+)
+      }
 
-};
 
 Card.propTypes = {
   hoverHendler: PropTypes.func,

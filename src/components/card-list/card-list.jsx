@@ -1,29 +1,40 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import { Card } from './../card/card';
+import {Card} from '../card/card.jsx';
 
-export const CardList = ({offers}) => {
-  const {offers} = offers;
-  this.state = {
-      title: `Beautiful & luxurious apartment at great location`,
-      coast: 120,
-      type: `Apartment`,
-      isPremium: true,
-      img: `img/apartment-01.jpg`
+
+export class CardList extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeCardId: `0`
     }
 
-  return (
-    <div className="cities__places-list places__list tabs__content">
-     {offers.map((item, index) => (
-                <Card
-                  index = {index}
-                  item = {item}
-                />))}
-    </div>
-  );
-  ;
-}
+    this.hoverHeandler = this.hoverHeandler.bind(this);
+  };
 
+  static getCards(props, hoverHeandler) {
+    const { offers } = props;
+    return (
+      <div className="cities__places-list places__list tabs__content">
+        <Card
+          hoverHeandler={hoverHeandler}
+          offers={offers}
+        />
+      </div>
+    );
+
+  }
+  render() {
+    return CardList.getCards(this.props, this.hoverHeandler);
+  };
+
+  hoverHeandler(evt) {
+    const id = evt.currentTarget.id;
+    this.setState({activeCardId : id});
+  };
+
+}
 CardList.propTypes = {
   offers: PropTypes.arrayOf(
     PropTypes.shape({

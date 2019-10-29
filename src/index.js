@@ -5,7 +5,7 @@ import {offers} from './components/moks/offers';
 
 const init = (rentOffers) => {
   ReactDOM.render(<App
- offers = {rentOffers}
+    offers={rentOffers}
   />, document.querySelector(`#root`));
 };
 init(offers);

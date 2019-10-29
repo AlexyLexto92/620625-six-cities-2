@@ -1,10 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {App} from './app';
+import {CardList} from './card-list';
 
 it(`WelcomeScreen correctly renders after relaunch`, () => {
-  const tree = renderer.create(<App
-    offers = {[
+  const tree = renderer.create(<CardList
+    offers={[
       {
         title: `Beautiful & luxurious apartment at great location`,
         coast: 120,
@@ -34,7 +34,7 @@ it(`WelcomeScreen correctly renders after relaunch`, () => {
         img: `img/apartment-03.jpg`
       }
     ]}
-    hoverHeandler={jest.fn()}
+    onClick={jest.fn()}
   />)
     .toJSON();
   expect(tree).toMatchSnapshot();
