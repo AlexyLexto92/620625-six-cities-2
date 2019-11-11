@@ -13,7 +13,6 @@ componentWillUnmount() {
   
 componentDidMount() {
 const {offers} = this.props;
-console.log(offers);
 const city = [52.38333, 4.9];
 const zoom = 13;
 
