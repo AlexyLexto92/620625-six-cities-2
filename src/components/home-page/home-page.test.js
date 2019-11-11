@@ -3,7 +3,8 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {HomePage} from './home-page';
 
-it(`WelcomeScreen correctly renders after relaunch`, () => {
+jest.mock(`../map/map.jsx`);
+it(`HomePage correctly renders after relaunch`, () => {
   const tree = renderer.create(<HomePage
     offers = {[
       {

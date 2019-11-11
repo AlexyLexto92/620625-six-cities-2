@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {App} from './app';
-
+jest.mock(`../map/map.jsx`);
 it(`WelcomeScreen correctly renders after relaunch`, () => {
   const tree = renderer.create(<App
     offers = {[
