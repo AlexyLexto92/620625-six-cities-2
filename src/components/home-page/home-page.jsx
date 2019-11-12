@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {CardList} from '../card-list/card-list.jsx';
+import {Map} from '../map/map.jsx';
 
 
 export const HomePage = (props) => {
@@ -93,7 +94,9 @@ export const HomePage = (props) => {
 
           </section>
           <div className="cities__right-section">
-            <section className="cities__map map"></section>
+            <Map
+            offers = {offers}
+            />
           </div>
         </div>
       </div>
@@ -101,8 +104,9 @@ export const HomePage = (props) => {
   </div>;
 };
 HomePage.propTypes = {
-  rents: PropTypes.arrayOf(
+  offers: PropTypes.arrayOf(
     PropTypes.shape({
+      coordinate: PropTypes.arrayOf(PropTypes.number),
       title: PropTypes.string,
       coast: PropTypes.number,
       type: PropTypes.string,
