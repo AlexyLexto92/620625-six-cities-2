@@ -26,7 +26,6 @@ exports[`WelcomeScreen correctly renders after relaunch 1`] = `
           alt="Place image"
           className="place-card__image"
           height="200"
-          src="img/apartment-01.jpg"
           width="260"
         />
       </a>
@@ -44,7 +43,6 @@ exports[`WelcomeScreen correctly renders after relaunch 1`] = `
             className="place-card__price-value"
           >
             €
-            120
           </b>
           <span
             className="place-card__price-text"
@@ -97,15 +95,11 @@ exports[`WelcomeScreen correctly renders after relaunch 1`] = `
       >
         <a
           href="#"
-        >
-          Beautiful & luxurious apartment at great location
-        </a>
+        />
       </h2>
       <p
         className="place-card__type"
-      >
-        Apartment
-      </p>
+      />
     </div>
   </article>
   <article
@@ -124,7 +118,6 @@ exports[`WelcomeScreen correctly renders after relaunch 1`] = `
           alt="Place image"
           className="place-card__image"
           height="200"
-          src="img/room.jpg"
           width="260"
         />
       </a>
@@ -142,7 +135,6 @@ exports[`WelcomeScreen correctly renders after relaunch 1`] = `
             className="place-card__price-value"
           >
             €
-            80
           </b>
           <span
             className="place-card__price-text"
@@ -195,15 +187,11 @@ exports[`WelcomeScreen correctly renders after relaunch 1`] = `
       >
         <a
           href="#"
-        >
-          Wood and stone place
-        </a>
+        />
       </h2>
       <p
         className="place-card__type"
-      >
-        Private room
-      </p>
+      />
     </div>
   </article>
   <article
@@ -222,7 +210,6 @@ exports[`WelcomeScreen correctly renders after relaunch 1`] = `
           alt="Place image"
           className="place-card__image"
           height="200"
-          src="img/apartment-02.jpg"
           width="260"
         />
       </a>
@@ -240,7 +227,6 @@ exports[`WelcomeScreen correctly renders after relaunch 1`] = `
             className="place-card__price-value"
           >
             €
-            132
           </b>
           <span
             className="place-card__price-text"
@@ -293,15 +279,11 @@ exports[`WelcomeScreen correctly renders after relaunch 1`] = `
       >
         <a
           href="#"
-        >
-          Canal View Prinsengracht
-        </a>
+        />
       </h2>
       <p
         className="place-card__type"
-      >
-        Apartment
-      </p>
+      />
     </div>
   </article>
   <article
@@ -320,7 +302,6 @@ exports[`WelcomeScreen correctly renders after relaunch 1`] = `
           alt="Place image"
           className="place-card__image"
           height="200"
-          src="img/apartment-03.jpg"
           width="260"
         />
       </a>
@@ -338,7 +319,6 @@ exports[`WelcomeScreen correctly renders after relaunch 1`] = `
             className="place-card__price-value"
           >
             €
-            180
           </b>
           <span
             className="place-card__price-text"
@@ -391,15 +371,11 @@ exports[`WelcomeScreen correctly renders after relaunch 1`] = `
       >
         <a
           href="#"
-        >
-          Nice, cozy, warm big bed apartment
-        </a>
+        />
       </h2>
       <p
         className="place-card__type"
-      >
-        Apartment
-      </p>
+      />
     </div>
   </article>
 </div>

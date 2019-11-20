@@ -1,11 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {App} from './components/app/app.jsx';
-import {offers} from './components/moks/offers';
+import {Offers} from './components/moks/offers';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+import {reducer} from './reducer.js';
+
 
 const init = (rentOffers) => {
-  ReactDOM.render(<App
-    offers={rentOffers}
-  />, document.querySelector(`#root`));
+  const store = createStore(reducer);
+  ReactDOM.render(
+      <Provider store = {store}>
+        <App
+          offers={rentOffers}
+        />
+      </Provider>
+      , document.querySelector(`#root`));
 };
-init(offers);
+init(Offers);
