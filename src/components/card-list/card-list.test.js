@@ -4,7 +4,7 @@ import {CardList} from './card-list';
 
 it(`WelcomeScreen correctly renders after relaunch`, () => {
   const tree = renderer.create(<CardList
-    offers={[
+    cityOffers={[
       {
         title: `Beautiful & luxurious apartment at great location`,
         coast: 120,

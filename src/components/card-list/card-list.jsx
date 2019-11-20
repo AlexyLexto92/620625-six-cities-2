@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {Card} from '../card/card.jsx';
+import {connect} from 'react-redux';
 
 
 export class CardList extends PureComponent {
@@ -14,12 +15,13 @@ export class CardList extends PureComponent {
   };
 
   static getCards(props, hoverHeandler) {
-    const { offers } = props;
+    const { offers, cityOffers } = props;
     return (
       <div className="cities__places-list places__list tabs__content">
         <Card
           hoverHeandler={hoverHeandler}
           offers={offers}
+          cityOffers={cityOffers}
         />
       </div>
     );
@@ -37,13 +39,19 @@ export class CardList extends PureComponent {
 }
 CardList.propTypes = {
   offers: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string,
-      coast: PropTypes.number,
-      type: PropTypes.string,
-      isPremium: PropTypes.bool,
-      img: PropTypes.string
-    })
+    PropTypes.shape({})
+  ),
+  cityOffers: PropTypes.arrayOf(
+    PropTypes.shape({})
   )
 }
 
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  cityOffers: state.cityOffers,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  changeCity: (city) => dispatch(ActionCreator.changeCity(city))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardList);

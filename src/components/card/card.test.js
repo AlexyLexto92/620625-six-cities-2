@@ -4,7 +4,7 @@ import {Card} from './card';
 
 it(`WelcomeScreen correctly renders after relaunch`, () => {
   const tree = renderer.create(<Card
-    offers={[
+    cityOffers={[
       {
         title: `Beautiful & luxurious apartment at great location`,
         coast: 120,

@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const Card = ({ offers, hoverHeandler }) => {
+export const Card = ({hoverHeandler, cityOffers }) => {
 return(
-    offers.map((item, index) =>
-      <article className="cities__place-card place-card" key={item.title + index} onMouseEnter={hoverHeandler} id={index}>
+ cityOffers.map((item, index) =>
+      <article className="cities__place-card place-card" key={item + index} onMouseEnter={hoverHeandler} id={index}>
         {
           item.isPremium ? <div className="place-card__mark">
             <span>Premium</span>
@@ -12,13 +12,13 @@ return(
         }
         <div className="cities__image-wrapper place-card__image-wrapper">
           <a href="#">
-            <img className="place-card__image" src={item.img} width="260" height="200" alt="Place image" />
+            <img className="place-card__image" src={item.image} width="260" height="200" alt="Place image" />
           </a>
         </div>
         <div className="place-card__info">
           <div className="place-card__price-wrapper">
             <div className="place-card__price">
-              <b className="place-card__price-value">&euro;{item.coast}</b>
+              <b className="place-card__price-value">&euro;{item.price}</b>
               <span className="place-card__price-text">&#47;&nbsp;night</span>
             </div>
             <button className="place-card__bookmark-button button" type="button">
@@ -35,9 +35,9 @@ return(
             </div>
           </div>
           <h2 className="place-card__name">
-            <a href="#">{item.title}</a>
+            <a href="#">{item.name}</a>
           </h2>
-          <p className="place-card__type">{item.type}</p>
+          <p className="place-card__type">{item.placeType}</p>
         </div>
       </article>)
 )
@@ -46,14 +46,7 @@ return(
 
 Card.propTypes = {
   hoverHendler: PropTypes.func,
-  offres: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string,
-      coast: PropTypes.number,
-      type: PropTypes.string,
-      isPremium: PropTypes.bool,
-      img: PropTypes.string
-    })
+  cityOffers: PropTypes.arrayOf(
+    PropTypes.shape({})
   )
 }
-
