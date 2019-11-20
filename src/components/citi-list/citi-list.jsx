@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import {ActionCreator} from '../../reducer.js';
 import PropTypes from 'prop-types';
+import {getCityList} from '../../utils.js'
 
 class CitiList extends PureComponent {
   constructor(props) {
@@ -9,16 +10,9 @@ class CitiList extends PureComponent {
   }
   render() {
     const {Offers, currentCity, changeCity} = this.props;
-    const uniqueArray = new Array();
-    Offers.forEach(element => {
-      uniqueArray.push(element.city)
-    });
-    let filteredCitys = Array.from(new Set(uniqueArray));
-    const maxCitiCount = 6;
-    filteredCitys.length <= maxCitiCount ? filteredCitys = filteredCitys : filteredCitys = filteredCitys.splice(maxCitiCount);
-   
+   const filteredCitysList = getCityList(Offers, 6);
     return (<ul className="locations__list tabs__list">
-    {filteredCitys.map((city, index) => <li key={city + index} 
+    {filteredCitysList.map((city, index) => <li key={city + index} 
     className="locations__item">
       <a className={`locations__item-link tabs__item
        ${city=== currentCity ? `tabs__item--active` : ` `} `} href="#"
