@@ -86,7 +86,8 @@ HomePage.propTypes = {
   city: PropTypes.string,
 };
 
-const mapStateToProps = (state, ownProps)=>Object.assign({}, ownProps, {
+const mapStateToProps = (state) => { return {
   cityOffers: state.cityOffers,
-  city: state.city,})
+  city: state.city,}}
+  
   export default connect(mapStateToProps)(HomePage);

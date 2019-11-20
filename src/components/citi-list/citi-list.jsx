@@ -34,10 +34,10 @@ CitiList.propTypes = {
   currentCity: PropTypes.string,
   changeCity: PropTypes.func
 }
-
-const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+const mapStateToProps = (state) => { return {
   currentCity: state.city,
-});
+}};
+
 const mapDispatchToProps = (dispatch) => ({
   changeCity: (city) => dispatch(ActionCreator.changeCity(city))
 });

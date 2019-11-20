@@ -46,9 +46,9 @@ CardList.propTypes = {
   )
 }
 
-const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+const mapStateToProps = (state) => {return {
   cityOffers: state.cityOffers,
-});
+}};
 
 const mapDispatchToProps = (dispatch) => ({
   changeCity: (city) => dispatch(ActionCreator.changeCity(city))
