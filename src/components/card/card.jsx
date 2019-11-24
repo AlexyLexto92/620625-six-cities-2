@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const Card = ({hoverHeandler, cityOffers }) => {
+export const Card = ({handleMouseOut, cityOffers, handleHover }) => {
 return(
  cityOffers.map((item, index) =>
-      <article className="cities__place-card place-card" key={item + index} onMouseEnter={hoverHeandler} id={index}>
+      <article className="cities__place-card place-card" key={item + index} onMouseEnter={() => handleHover(item.id)} onMouseLeave={() => handleMouseOut()}>
         {
           item.isPremium ? <div className="place-card__mark">
             <span>Premium</span>

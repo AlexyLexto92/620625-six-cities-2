@@ -1,15 +1,17 @@
 import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import {Card} from './card';
+import {Card} from './card.jsx';
 Enzyme.configure({adapter: new Adapter()});
-
-it(`callback function correct run`, () => {
-  const onHover = jest.fn();
-  const genrequestionscreen = shallow(<Card
-    hoverHeandler={onHover}
-    cityOffers={ [
-      {
+it(`Info about active card is correct on hover`, () => {
+  const hoverHandler = jest.fn();
+  const mouseOutHandler = jest.fn();
+  const card = shallow(<Card
+    handleHover = {hoverHandler}
+    handleMouseOut = {mouseOutHandler}
+    cityOffers={
+      [{
+        id: 1,
         mark: `Premium`,
         image: `img/apartment-01.jpg`,
         price: 120,
@@ -45,14 +47,12 @@ it(`callback function correct run`, () => {
                     comes to rest in this alley flowery and colorful.
                  `]
       }
-    ]
-    }
+      ]}
+
   />);
-  const button = genrequestionscreen.find(`article`).first();
-  button.simulate(`mouseenter`, {
-    activeCardId: `0`
-  });
-  expect(onHover).toHaveBeenCalledWith({
-    activeCardId: `0`
-  });
+  const article = card.find(`.place-card`);
+  article.simulate(`mouseover`);
+  expect(handleHover).toHaveBeenCalledTimes(1);
+  article.simulate(`mouseout`);
+  expect(handleMouseOut).toHaveBeenCalledTimes(1);
 });

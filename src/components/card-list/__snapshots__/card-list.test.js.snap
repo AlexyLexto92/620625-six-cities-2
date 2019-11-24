@@ -6,8 +6,8 @@ exports[`WelcomeScreen correctly renders after relaunch 1`] = `
 >
   <article
     className="cities__place-card place-card"
-    id={0}
     onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="place-card__mark"
@@ -104,8 +104,8 @@ exports[`WelcomeScreen correctly renders after relaunch 1`] = `
   </article>
   <article
     className="cities__place-card place-card"
-    id={1}
     onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
      
     <div
@@ -196,8 +196,8 @@ exports[`WelcomeScreen correctly renders after relaunch 1`] = `
   </article>
   <article
     className="cities__place-card place-card"
-    id={2}
     onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
      
     <div
@@ -288,8 +288,8 @@ exports[`WelcomeScreen correctly renders after relaunch 1`] = `
   </article>
   <article
     className="cities__place-card place-card"
-    id={3}
     onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
      
     <div
