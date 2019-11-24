@@ -9,7 +9,7 @@ it(`Info about active card is correct on hover`, () => {
   const card = shallow(<Card
     cityOffers={
       [{
-        id: 0,
+        id: 1,
         mark: `Premium`,
         image: `img/apartment-01.jpg`,
         price: 120,
@@ -50,8 +50,8 @@ it(`Info about active card is correct on hover`, () => {
     handleMouseOut = {handleMouseOut}
   />);
   const article = card.find(`.place-card`);
-  article.simulate(`mouseover`);
-  expect(handleHover).toHaveBeenCalledWith(0);
-  article.simulate(`mouseout`);
+  article.simulate(`mouseenter`);
+  expect(handleHover).toHaveBeenCalledWith(1);
+  article.simulate(`mouseleave`);
   expect(handleMouseOut).toHaveBeenCalledTimes(1);
 });

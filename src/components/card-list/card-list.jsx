@@ -19,7 +19,6 @@ export class CardList extends PureComponent {
 
   render(){
     const {cityOffers, activeCard} =this.props;
-   console.log(activeCard)
     return( <div className="cities__places-list places__list tabs__content">
         <Card
           handleHover={this.handleHover}
