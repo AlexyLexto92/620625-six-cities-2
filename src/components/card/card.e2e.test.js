@@ -4,14 +4,12 @@ import Adapter from 'enzyme-adapter-react-16';
 import {Card} from './card.jsx';
 Enzyme.configure({adapter: new Adapter()});
 it(`Info about active card is correct on hover`, () => {
-  const hoverHandler = jest.fn();
-  const mouseOutHandler = jest.fn();
+  const handleHover = jest.fn();
+  const handleMouseOut = jest.fn();
   const card = shallow(<Card
-    handleHover = {hoverHandler}
-    handleMouseOut = {mouseOutHandler}
     cityOffers={
       [{
-        id: 1,
+        id: 0,
         mark: `Premium`,
         image: `img/apartment-01.jpg`,
         price: 120,
@@ -48,11 +46,12 @@ it(`Info about active card is correct on hover`, () => {
                  `]
       }
       ]}
-
+    handleHover = {handleHover}
+    handleMouseOut = {handleMouseOut}
   />);
   const article = card.find(`.place-card`);
   article.simulate(`mouseover`);
-  expect(handleHover).toHaveBeenCalledTimes(1);
+  expect(handleHover).toHaveBeenCalledWith(0);
   article.simulate(`mouseout`);
   expect(handleMouseOut).toHaveBeenCalledTimes(1);
 });

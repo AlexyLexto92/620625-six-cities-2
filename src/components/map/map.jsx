@@ -19,13 +19,9 @@ export class Map extends PureComponent {
 
     const icon = L.icon({
       iconUrl: `img/pin.svg`,
-      iconSize: [100, 100],
+      iconSize: [26, 41],
     });
 
-    const iconActive = L.icon({
-      iconUrl: `img/pin-active.svg`,
-      iconSize: [100, 100],
-    })
     this.map = L.map(this.mapRef.current, {
       center: this.city,
       zoom: this.zoom,
@@ -40,7 +36,7 @@ export class Map extends PureComponent {
 
     let a = Array.from(
       cityOffers.map((elem) => {
-        return L.marker(elem.coordinates, iconActive);
+        return L.marker(elem.coordinates, {icon:icon});
       }))
     this.markersLayer = L.layerGroup(a).addTo(this.map);
   }
@@ -64,7 +60,6 @@ export class Map extends PureComponent {
 
     if (activeCard >= 0) {
       let coord = cityOffers.find(elem => elem.id === activeCard).coordinates;
-      console.log(coord);
       this.map.panTo(coord)
       }
 
