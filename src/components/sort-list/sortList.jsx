@@ -2,37 +2,37 @@ import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import {ActionCreator, FilterType} from '../../reducer.js';
 
-export class SortList extends PureComponent{
-  constructor(props){
+export class SortList extends PureComponent {
+  constructor(props) {
     super(props);
-    this.state={
+    this.state = {
       active: false,
     }
-    this.heandlerClickHead= this.heandlerClickHead.bind(this);
+    this.heandlerClickHead = this.heandlerClickHead.bind(this);
   }
-  heandlerClickHead(){
-this.setState({active: !this.state.active});
+  heandlerClickHead() {
+    this.setState({active: !this.state.active});
   }
   handleClickItem(filterType) {
     this.setState({active: false});
     this.props.changeFilterType(filterType);
   }
-  render(){
+  render() {
     const {currentFilter} = this.props;
     const {active} = this.state;
     const dropdownClass = active ? `places__options--opened` : ``;
- 
+
     const filters = [
       {value: `Popular`, filterType: FilterType.POPULAR},
       {value: `Price: low to high`, filterType: FilterType.PRICE_ASC},
       {value: `Price: high to low`, filterType: FilterType.PRICE_DESC},
       {value: `Top rated first`, filterType: FilterType.TOP}
     ];
-    return(
-    <form className="places__sorting" action="#" method="get">
-    <span className="places__sorting-caption">Sort by</span>
-    <span className="places__sorting-type" tabIndex="0" onClick={this.heandlerClickHead}>
-    {
+    return (
+      <form className="places__sorting" action="#" method="get">
+        <span className="places__sorting-caption">Sort by</span>
+        <span className="places__sorting-type" tabIndex="0" onClick={this.heandlerClickHead}>
+          {
             filters.find((filter) => {
               return filter.filterType === currentFilter;
             }).value
@@ -46,7 +46,7 @@ this.setState({active: !this.state.active});
             <li
               className={`places__option ${
                 currentFilter === filter.filterType ? `places__option--active` : ``
-              }`}
+                }`}
               key={`filter` + i}
               tabIndex="0"
               onClick={() => {
@@ -62,9 +62,11 @@ this.setState({active: !this.state.active});
 
 }
 
-const mapStateToProps = (state) => { return {
-  currentFilter: state.cityFilterType,
-}};
+const mapStateToProps = (state) => {
+  return {
+    currentFilter: state.cityFilterType,
+  }
+};
 
 const mapDispatchToProps = (dispatch) => ({
   changeFilterType: (city) => dispatch(ActionCreator.changeFilter(city))
