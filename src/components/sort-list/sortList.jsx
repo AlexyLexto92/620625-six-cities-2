@@ -18,24 +18,15 @@ export class SortList extends PureComponent {
     this.props.changeFilterType(filterType);
   }
   render() {
-    const {currentFilter} = this.props;
+    const {currentFilter, filters} = this.props;
     const {active} = this.state;
     const dropdownClass = active ? `places__options--opened` : ``;
-
-    const filters = [
-      {value: `Popular`, filterType: FilterType.POPULAR},
-      {value: `Price: low to high`, filterType: FilterType.PRICE_ASC},
-      {value: `Price: high to low`, filterType: FilterType.PRICE_DESC},
-      {value: `Top rated first`, filterType: FilterType.TOP}
-    ];
     return (
       <form className="places__sorting" action="#" method="get">
         <span className="places__sorting-caption">Sort by</span>
         <span className="places__sorting-type" tabIndex="0" onClick={this.heandlerClickHead}>
           {
-            filters.find((filter) => {
-              return filter.filterType === currentFilter;
-            }).value
+            filters.find((filter) =>  filter.filterType === currentFilter).value
           }
           <svg className="places__sorting-arrow" width="7" height="4">
             <use xlinkHref="#icon-arrow-select"></use>

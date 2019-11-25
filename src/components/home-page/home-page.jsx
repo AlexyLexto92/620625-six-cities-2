@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CardList from '../card-list/card-list.jsx';
 import Map from '../map/map.jsx';
-import  CitiList  from '../citi-list/citi-list.jsx';
+import CitiList from '../citi-list/citi-list.jsx';
 import { Offers } from '../moks/offers.js';
-import {connect} from 'react-redux';
-import  SortList from '../sort-list/sortList.jsx';
-
+import { connect } from 'react-redux';
+import SortList from '../sort-list/sortList.jsx';
+import {FilterType} from '../../reducer.js';
 
 export const HomePage = (props) => {
-  const {offers, cityOffers, city} = props;
+  const { offers, cityOffers, city } = props;
   return <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -39,7 +39,7 @@ export const HomePage = (props) => {
       <div className="tabs">
         <section className="locations container">
           <CitiList
-          Offers = {Offers}/>
+            Offers={Offers} />
         </section>
       </div>
       <div className="cities">
@@ -48,6 +48,12 @@ export const HomePage = (props) => {
             <h2 className="visually-hidden">Places</h2>
             <b className="places__found">{cityOffers.length} places to stay in {city}</b>
             <SortList
+              filters={[
+                { value: `Popular`, filterType: FilterType.POPULAR },
+                { value: `Price: low to high`, filterType: FilterType.PRICE_ASC },
+                { value: `Price: high to low`, filterType: FilterType.PRICE_DESC },
+                { value: `Top rated first`, filterType: FilterType.TOP }
+              ]}
             />
             <CardList
               cityOffers={cityOffers}
@@ -56,7 +62,7 @@ export const HomePage = (props) => {
           </section>
           <div className="cities__right-section">
             <Map
-            offers = {offers}
+              offers={offers}
             />
           </div>
         </div>
@@ -74,8 +80,11 @@ HomePage.propTypes = {
   city: PropTypes.string,
 };
 
-const mapStateToProps = (state) => { return {
-  cityOffers: state.cityOffers,
-  city: state.city,}}
-  
-  export default connect(mapStateToProps)(HomePage);
+const mapStateToProps = (state) => {
+  return {
+    cityOffers: state.cityOffers,
+    city: state.city,
+  }
+}
+
+export default connect(mapStateToProps)(HomePage);
