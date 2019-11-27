@@ -19,8 +19,9 @@ export class Map extends PureComponent {
 
     const icon = L.icon({
       iconUrl: `img/pin.svg`,
-      iconSize: [100, 100],
+      iconSize: [26, 41],
     });
+
     this.map = L.map(this.mapRef.current, {
       center: this.city,
       zoom: this.zoom,
@@ -32,21 +33,38 @@ export class Map extends PureComponent {
     L.tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
     }).addTo(this.map);
-   
-     let a = Array.from(
-        cityOffers.map((elem) => {
-        return  L.marker(elem.coordinates, this.icon);
-        }))
-        this.markersLayer = L.layerGroup(a).addTo(this.map); 
-  }
-  componentDidUpdate() {
-    const { cityOffers } = this.props;
-    this.markersLayer.clearLayers();
+
     let a = Array.from(
       cityOffers.map((elem) => {
-      return  L.marker(elem.coordinates, this.icon);
+        return L.marker(elem.coordinates, {icon:icon});
       }))
-      this.markersLayer = L.layerGroup(a).addTo(this.map); 
+    this.markersLayer = L.layerGroup(a).addTo(this.map);
+  }
+  componentDidUpdate() {
+    const icon = L.icon({
+      iconUrl: `img/pin.svg`,
+      iconSize: [26, 41],
+    });
+
+    const iconActive = L.icon({
+      iconUrl: `img/pin-active.svg`,
+      iconSize: [26, 41],
+    })
+    const { cityOffers, activeCard } = this.props;
+    this.markersLayer.clearLayers();
+
+    let a = Array.from(
+      cityOffers.map((elem) => {
+        return L.marker(elem.coordinates, { icon: elem.id === activeCard ? iconActive : icon });
+      }))
+
+    if (activeCard >= 0) {
+      let coord = cityOffers.find(elem => elem.id === activeCard).coordinates;
+      this.map.panTo(coord)
+      }
+
+    this.markersLayer = L.layerGroup(a).addTo(this.map);
+
   }
 
   render() {
@@ -59,8 +77,11 @@ Map.propTypes = {
   )
 };
 
-const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  cityOffers: state.cityOffers,
-});
+const mapStateToProps = (state) => {
+  return {
+    cityOffers: state.cityOffers,
+    activeCard: state.activeCard,
+  }
+};
 
 export default connect(mapStateToProps)(Map);
