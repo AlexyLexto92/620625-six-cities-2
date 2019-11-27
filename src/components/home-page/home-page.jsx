@@ -48,12 +48,6 @@ export const HomePage = (props) => {
             <h2 className="visually-hidden">Places</h2>
             <b className="places__found">{cityOffers.length} places to stay in {city}</b>
             <SortList
-              filters={[
-                { value: `Popular`, filterType: FilterType.POPULAR },
-                { value: `Price: low to high`, filterType: FilterType.PRICE_ASC },
-                { value: `Price: high to low`, filterType: FilterType.PRICE_DESC },
-                { value: `Top rated first`, filterType: FilterType.TOP }
-              ]}
             />
             <CardList
               cityOffers={cityOffers}

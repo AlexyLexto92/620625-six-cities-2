@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import {ActionCreator, FilterType} from '../../reducer.js';
-
+import {FILTERS} from '../../consts.js';
 export class SortList extends PureComponent {
   constructor(props) {
     super(props);
@@ -18,7 +18,7 @@ export class SortList extends PureComponent {
     this.props.changeFilterType(filterType);
   }
   render() {
-    const {currentFilter, filters} = this.props;
+    const {currentFilter} = this.props;
     const {active} = this.state;
     const dropdownClass = active ? `places__options--opened` : ``;
     return (
@@ -26,14 +26,14 @@ export class SortList extends PureComponent {
         <span className="places__sorting-caption">Sort by</span>
         <span className="places__sorting-type" tabIndex="0" onClick={this.heandlerClickHead}>
           {
-            filters.find((filter) =>  filter.filterType === currentFilter).value
+            FILTERS.find((filter) =>  filter.filterType === currentFilter).value
           }
           <svg className="places__sorting-arrow" width="7" height="4">
             <use xlinkHref="#icon-arrow-select"></use>
           </svg>
         </span>
         <ul className={`places__options places__options--custom ${dropdownClass}`}>
-          {filters.map((filter, i) => (
+          {FILTERS.map((filter, i) => (
             <li
               className={`places__option ${
                 currentFilter === filter.filterType ? `places__option--active` : ``
