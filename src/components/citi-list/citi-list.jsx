@@ -9,8 +9,9 @@ class CitiList extends PureComponent {
     super(props);
   }
   render() {
+    const CITY_LENGTH = 6;
     const {Offers, currentCity, changeCity} = this.props;
-    const filteredCitysList = getCityList(Offers, 6);
+    const filteredCitysList = getCityList(Offers, CITY_LENGTH);
     return (<ul className="locations__list tabs__list">
       {filteredCitysList.map((city, index) => <li key={city + index}
         className="locations__item">
