@@ -10,8 +10,8 @@ class CitiList extends PureComponent {
   }
   render() {
     const CITY_LENGTH = 6;
-    const {Offers, currentCity, changeCity} = this.props;
-    const filteredCitysList = getCityList(Offers, CITY_LENGTH);
+    const {offersCity, currentCity, changeCity} = this.props;
+    const filteredCitysList = getCityList(offersCity, CITY_LENGTH);
     return (<ul className="locations__list tabs__list">
       {filteredCitysList.map((city, index) => <li key={city + index}
         className="locations__item">
@@ -29,15 +29,18 @@ class CitiList extends PureComponent {
   }
 }
 CitiList.propTypes = {
-  Offers: PropTypes.arrayOf(
+  offersCity: PropTypes.arrayOf(
     PropTypes.shape({})
   ),
   currentCity: PropTypes.string,
-  changeCity: PropTypes.func
+  changeCity: PropTypes.func,
 }
 const mapStateToProps = (state) => {
   return {
     currentCity: state.city,
+    offersCity: state.offersPlace,
+    cityOffers: state.cityOffers,
+    city: state.city,
   }
 };
 

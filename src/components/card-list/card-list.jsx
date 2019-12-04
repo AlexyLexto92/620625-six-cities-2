@@ -4,6 +4,7 @@ import {Card} from '../card/card.jsx';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer.js';
 
+
 export class CardList extends PureComponent {
   constructor(props) {
     super(props);
@@ -18,12 +19,12 @@ export class CardList extends PureComponent {
   }
 
   render(){
-    const {cityOffers, activeCard} =this.props;
+    const {offersCity, activeCard} =this.props;
     return( <div className="cities__places-list places__list tabs__content">
         <Card
           handleHover={this.handleHover}
           handleMouseOut={this.handleMouseOut}
-          cityOffers={cityOffers}
+          offersCity={offersCity}
         />
       </div>
 
@@ -42,6 +43,7 @@ CardList.propTypes = {
 
 const mapStateToProps = (state) => { return {
   activeCard: state.activeCard,
+  offersCity: state.cityOffers,
 }};
 
 const mapDispatchToProps = (dispatch) => ({

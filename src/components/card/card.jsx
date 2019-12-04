@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const Card = ({handleMouseOut, cityOffers, handleHover }) => {
+export const Card = ({handleMouseOut, offersCity, handleHover }) => {
 return(
- cityOffers.map((item, index) =>
-      <article className="cities__place-card place-card" key={item + index} onMouseEnter={() => handleHover(item.id)} onMouseLeave={() => handleMouseOut()}>
+  offersCity.map((item, index) =>
+      <article className="cities__place-card place-card" key={item.title + index} onMouseEnter={() => handleHover(item.id)} onMouseLeave={() => handleMouseOut()}>
         {
-          item.isPremium ? <div className="place-card__mark">
+          item.is_premium ? <div className="place-card__mark">
             <span>Premium</span>
           </div> : ` `
         }
         <div className="cities__image-wrapper place-card__image-wrapper">
           <a href="#">
-            <img className="place-card__image" src={item.image} width="260" height="200" alt="Place image" />
+            <img className="place-card__image" src={item.preview_image} width="260" height="200" alt="Place image" />
           </a>
         </div>
         <div className="place-card__info">
@@ -35,9 +35,9 @@ return(
             </div>
           </div>
           <h2 className="place-card__name">
-            <a href="#">{item.name}</a>
+            <a href="#">{item.title}</a>
           </h2>
-          <p className="place-card__type">{item.placeType}</p>
+          <p className="place-card__type">{item.type}</p>
         </div>
       </article>)
 )
@@ -46,7 +46,7 @@ return(
 
 Card.propTypes = {
   hoverHendler: PropTypes.func,
-  cityOffers: PropTypes.arrayOf(
+  offersCity: PropTypes.arrayOf(
     PropTypes.shape({})
   )
 }

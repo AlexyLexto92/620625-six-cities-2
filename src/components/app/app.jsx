@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import HomePage from '../home-page/home-page.jsx';
-export const App = ({offers}) => {
-  return <HomePage
-    offers={offers}
-  />;
+export const App = () => {
+  return <HomePage/>;
 };
 
 App.propTypes = {

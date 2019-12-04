@@ -13,9 +13,10 @@ export class Map extends PureComponent {
   }
 
   componentDidMount() {
-    const { cityOffers } = this.props;
-    const city = [52.38333, 4.9];
-    const zoom = 13;
+    const {offersPlace,cityOffers} = this.props;
+    const startCoord = Object.values(cityOffers[0].location);
+    const city = startCoord.slice(0,2);
+    const zoom = startCoord.slice(2,3);
 
     const icon = L.icon({
       iconUrl: `img/pin.svg`,
@@ -36,11 +37,19 @@ export class Map extends PureComponent {
 
     let a = Array.from(
       cityOffers.map((elem) => {
-        return L.marker(elem.coordinates, {icon:icon});
+        return L.marker(Object.values(elem.location), {icon:icon});
       }))
     this.markersLayer = L.layerGroup(a).addTo(this.map);
   }
   componentDidUpdate() {
+    const { cityOffers, activeCard } = this.props;
+    const startCoord = Object.values(cityOffers[0].location);
+    const city = startCoord.slice(0,2);
+    const zoom = startCoord.slice(2,3);
+    this.map.center = city;
+    this.map.zoom = zoom;
+
+   
     const icon = L.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [26, 41],
@@ -50,16 +59,17 @@ export class Map extends PureComponent {
       iconUrl: `img/pin-active.svg`,
       iconSize: [26, 41],
     })
-    const { cityOffers, activeCard } = this.props;
+
     this.markersLayer.clearLayers();
 
     let a = Array.from(
       cityOffers.map((elem) => {
-        return L.marker(elem.coordinates, { icon: elem.id === activeCard ? iconActive : icon });
+        return L.marker(Object.values(elem.location), { icon: elem.id === activeCard ? iconActive : icon });
       }))
 
     if (activeCard >= 0) {
-      let coord = cityOffers.find(elem => elem.id === activeCard).coordinates;
+      const location= cityOffers.find(elem => elem.id === activeCard).location;
+      let coord = Object.values(location);
       this.map.panTo(coord)
       }
 
@@ -81,6 +91,7 @@ const mapStateToProps = (state) => {
   return {
     cityOffers: state.cityOffers,
     activeCard: state.activeCard,
+    offersPlace: state.offersPlace,
   }
 };
 

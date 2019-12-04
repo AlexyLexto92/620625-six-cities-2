@@ -2,9 +2,12 @@ import {
   ActionCreator,
   ActionType,
   FilterType,
-  reducer
+  reducer,
+  Operation
 } from "./reducer";
-import {Offers} from "./components/moks/offers.js";
+import MockAdapter from 'axios-mock-adapter';
+import offerTestObj from "./components/moks/mock-offer.js";
+import api from './api.js';
 
 it(`Action creator for changeCity returns correct action`, () => {
   expect(ActionCreator.changeCity(`Amsterdam`)).toEqual({
@@ -30,10 +33,11 @@ it(`Action creator for changeActiveCard returns correct action`, () => {
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(undefined, {})).toEqual({
-    city: Offers[0].city,
-    cityOffers: Offers.filter((offer) => offer.city === Offers[0].city),
+    city: ``,
+    cityOffers: [],
     cityFilterType: FilterType.POPULAR,
-    activeCard: -1
+    activeCard: -1,
+    offersPlace: [],
   });
 });
 
@@ -45,9 +49,10 @@ it(`Reducer return right state after changing city`, () => {
       }
   )).toEqual({
     city: `Cologne`,
-    cityOffers: Offers.filter((offer) => offer.city === `Cologne`),
+    cityOffers: offerTestObj.filter((offer) => offer.city === `Cologne`),
     cityFilterType: FilterType.POPULAR,
-    activeCard: -1
+    activeCard: -1,
+    offersPlace: [],
   });
 });
 
@@ -58,11 +63,11 @@ it(`Reducer return right state after changing filterType`, () => {
         payload: FilterType.TOP,
       }
   )).toEqual({
-    city: Offers[0].city,
-    cityOffers: Offers.filter((offer) => offer.city === Offers[0].city).sort((a, b) =>
-      b.rating - a.rating),
+    city: ``,
+    cityOffers: [],
     cityFilterType: FilterType.TOP,
-    activeCard: -1
+    activeCard: -1,
+    offersPlace: [],
   });
 });
 
@@ -73,9 +78,28 @@ it(`Reducer return right state after changing active card`, () => {
         payload: 100,
       }
   )).toEqual({
-    city: Offers[0].city,
-    cityOffers: Offers.filter((offer) => offer.city === Offers[0].city),
+    city: ``,
+    cityOffers: [],
     cityFilterType: FilterType.POPULAR,
-    activeCard: 100
+    activeCard: 100,
+    offersPlace: [],
   });
+});
+it(`server load data correct`, () => {
+  const apiMock = new MockAdapter(api);
+  const dispatch = jest.fn();
+  const cityLoader = Operation.loadCityOffers();
+
+  apiMock
+.onGet(`/question`)
+  .reply(200, [{fake: true}]);
+
+  return cityLoader(dispatch)
+.then(()=>{
+  expect(dispatch).toHaveBeenCalledTimes(1);
+  expect(dispatch).toHaveBeenNthCalledWith(1, {
+    type: ActionType.LOAD_CITYOFFERS,
+    payload: [{fake: true}],
+  });
+});
 });

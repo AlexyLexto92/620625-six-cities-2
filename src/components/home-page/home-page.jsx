@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import CardList from '../card-list/card-list.jsx';
 import Map from '../map/map.jsx';
 import CitiList from '../citi-list/citi-list.jsx';
-import { Offers } from '../moks/offers.js';
 import { connect } from 'react-redux';
 import SortList from '../sort-list/sortList.jsx';
-import {FilterType} from '../../reducer.js';
 
 export const HomePage = (props) => {
-  const { offers, cityOffers, city } = props;
+  const {cityOffers, city,offersCity,offersPlace } = props;
+  console.log(offersCity);
   return <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -38,8 +37,7 @@ export const HomePage = (props) => {
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
         <section className="locations container">
-          <CitiList
-            Offers={Offers} />
+        {offersPlace.length> 0 &&  <CitiList/>}
         </section>
       </div>
       <div className="cities">
@@ -49,15 +47,11 @@ export const HomePage = (props) => {
             <b className="places__found">{cityOffers.length} places to stay in {city}</b>
             <SortList
             />
-            <CardList
-              cityOffers={cityOffers}
-            />
+           {offersPlace.length> 0 && <CardList/>}
 
           </section>
           <div className="cities__right-section">
-            <Map
-              offers={offers}
-            />
+        {cityOffers.length> 0 &&  <Map/>}
           </div>
         </div>
       </div>
@@ -65,9 +59,6 @@ export const HomePage = (props) => {
   </div>;
 };
 HomePage.propTypes = {
-  offers: PropTypes.arrayOf(
-    PropTypes.shape({})
-  ),
   cityOffers: PropTypes.arrayOf(
     PropTypes.shape({})
   ),
@@ -76,8 +67,10 @@ HomePage.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
+    offersPlace: state.offersPlace,
     cityOffers: state.cityOffers,
     city: state.city,
+    offersCity: state.offersPlace,
   }
 }
 

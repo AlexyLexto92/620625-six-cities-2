@@ -1,5 +1,3 @@
-import {Offers} from "./components/moks/offers";
-
 const FilterType = {
   POPULAR: `POPULAR`,
   PRICE_ASC: `PRICE_ASC`,
@@ -8,16 +6,20 @@ const FilterType = {
 };
 
 const initialState = {
-  city: Offers[0].city,
-  cityOffers: Offers.filter((offer) => offer.city === Offers[0].city),
+  city: ``,
+  cityOffers: [],
   cityFilterType: FilterType.POPULAR,
   activeCard: -1,
+  offersPlace: [],
 };
 
 const ActionType = {
   CHANGE_CITY: `CHANGE_CITY`,
   CHANGE_FILTER: `CHANGE_FILTER`,
   CHANGE_ACTIVE_CARD: `CHANGE_ACTIVE_CARD`,
+  LOAD_CITYOFFERS: `LOAD_CITYOFFERS`,
+  SHOW_CITY_LIST: `SHOW_CITY_LIST`,
+  SHOW_CITY_OFFERS_LIST: `SHOW_CITY_OFFERS_LIST`,
 };
 
 
@@ -33,7 +35,20 @@ const ActionCreator = {
   changeActiveCard: (activeCard) => ({
     type: ActionType.CHANGE_ACTIVE_CARD,
     payload: activeCard,
-  })
+  }),
+  loadCityOffers: (offersPlace) => ({
+    type: ActionType.LOAD_CITYOFFERS,
+    payload: offersPlace,
+  }),
+  showCityList: (offersPlace) => ({
+    type: ActionType.SHOW_CITY_LIST,
+    payload: offersPlace,
+  }),
+  showCityOffersList: (offersPlace) => ({
+    type: ActionType.SHOW_CITY_OFFERS_LIST,
+    payload: offersPlace
+  }),
+
 };
 
 const reducer = (state = initialState, action) => {
@@ -41,10 +56,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_CITY:
       return Object.assign({}, state, {
         city: action.payload,
-        cityOffers: Offers.filter((offer) => offer.city === action.payload)
+        cityOffers: state.offersPlace.filter((offer) => offer.city.name === action.payload),
       });
     case ActionType.CHANGE_FILTER:
-      const cityOffersFiltered = Offers.filter((offer) => offer.city === state.city);
+      const cityOffersFiltered = state.offersPlace.filter((offer) => offer.city.name === state.city);
       switch (action.payload) {
         case FilterType.POPULAR:
           break;
@@ -71,12 +86,37 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         activeCard: action.payload,
       });
+    case ActionType.LOAD_CITYOFFERS:
+      return Object.assign({}, state, {
+        offersPlace: action.payload,
+      });
+    case ActionType.SHOW_CITY_LIST:
+      return Object.assign({}, state, {
+        city: action.payload[0].city.name,
+      });
+    case ActionType.SHOW_CITY_OFFERS_LIST:
+      return Object.assign({}, state, {
+        cityOffers: action.payload.filter((offer) => offer.city.name === action.payload[0].city.name),
+      });
   }
   return state;
 };
+const Operation = {
+  loadCityOffers: () => (dispatch, _getState, api) => {
+    return api.get(`/hotels`)
+      .then((response) => {
+        dispatch(ActionCreator.loadCityOffers(response.data));
+        dispatch(ActionCreator.showCityList(response.data));
+        dispatch(ActionCreator.showCityOffersList(response.data));
+      });
+  },
+};
+
+
 export {
   ActionCreator,
   ActionType,
   FilterType,
   reducer,
+  Operation,
 };

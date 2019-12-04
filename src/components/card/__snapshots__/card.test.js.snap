@@ -17,7 +17,7 @@ exports[`WelcomeScreen correctly renders after relaunch 1`] = `
         alt="Place image"
         className="place-card__image"
         height="200"
-        src="img/apartment-01.jpg"
+        src="https://htmlacademy-react-2.appspot.com/six-cities/static/hotel/5.jpg"
         width="260"
       />
     </a>
@@ -35,7 +35,7 @@ exports[`WelcomeScreen correctly renders after relaunch 1`] = `
           className="place-card__price-value"
         >
           €
-          120
+          435
         </b>
         <span
           className="place-card__price-text"
@@ -89,13 +89,13 @@ exports[`WelcomeScreen correctly renders after relaunch 1`] = `
       <a
         href="#"
       >
-        Beautiful & luxurious apartment at great location
+        Wood and stone place
       </a>
     </h2>
     <p
       className="place-card__type"
     >
-      Entire place
+      hotel
     </p>
   </div>
 </article>
