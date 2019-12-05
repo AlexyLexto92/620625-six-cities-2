@@ -6,7 +6,8 @@ import {getCityList} from '../../utils.js';
 it(`Citylist correctly renders after relaunch`, () => {
   const tree = renderer
     .create(<CitiList
-      startArray = {[`Amsterdam`]}
+      startArray = {offerTestObj}
+      offersCity = {offerTestObj}
       filteredCitysList = {getCityList(offerTestObj, 1)}
       currentCity = {offerTestObj[0].city.name}
       changeCity = {()=>{}}

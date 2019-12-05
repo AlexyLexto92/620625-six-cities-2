@@ -7,7 +7,8 @@ import {
 } from "./reducer";
 import MockAdapter from 'axios-mock-adapter';
 import offerTestObj from "./components/moks/mock-offer.js";
-import api from './api.js';
+import {createAPI} from './api.js';
+
 
 it(`Action creator for changeCity returns correct action`, () => {
   expect(ActionCreator.changeCity(`Amsterdam`)).toEqual({
@@ -86,6 +87,7 @@ it(`Reducer return right state after changing active card`, () => {
   });
 });
 it(`server load data correct`, () => {
+  const api = createAPI();
   const apiMock = new MockAdapter(api);
   const dispatch = jest.fn();
   const cityLoader = Operation.loadCityOffers();
@@ -94,7 +96,7 @@ it(`server load data correct`, () => {
 .onGet(`/question`)
   .reply(200, [{fake: true}]);
 
-  return cityLoader(dispatch)
+  return cityLoader(dispatch, jest.fn(), api)
 .then(()=>{
   expect(dispatch).toHaveBeenCalledTimes(1);
   expect(dispatch).toHaveBeenNthCalledWith(1, {

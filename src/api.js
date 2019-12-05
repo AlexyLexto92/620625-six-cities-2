@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {ActionCreator} from './reducer.js';
 
-const apiUrl = ` https://htmlacademy-react-2.appspot.com/six-cities`;
+const apiUrl = `https://htmlacademy-react-2.appspot.com/six-cities`;
 const apiTimeout = 5000;
 
 export const createAPI = (dispatch) => {
