@@ -93,12 +93,12 @@ it(`server load data correct`, () => {
   const cityLoader = Operation.loadCityOffers();
 
   apiMock
-.onGet(`/question`)
+.onGet(`/hotels`)
   .reply(200, [{fake: true}]);
 
   return cityLoader(dispatch, jest.fn(), api)
 .then(()=>{
-  expect(dispatch).toHaveBeenCalledTimes(1);
+  expect(dispatch).toHaveBeenCalledTimes(3);
   expect(dispatch).toHaveBeenNthCalledWith(1, {
     type: ActionType.LOAD_CITYOFFERS,
     payload: [{fake: true}],

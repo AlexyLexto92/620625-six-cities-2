@@ -8,7 +8,6 @@ import SortList from '../sort-list/sortList.jsx';
 
 export const HomePage = (props) => {
   const {cityOffers, city,offersCity,offersPlace } = props;
-  console.log(offersCity);
   return <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
