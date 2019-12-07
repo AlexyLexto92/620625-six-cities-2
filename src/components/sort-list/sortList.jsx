@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import {connect} from "react-redux";
-import {ActionCreator, FilterType} from '../../reducer.js';
+import {ActionCreator, FilterType} from '../../reducers/userManual/userManual';
 import {FILTERS} from '../../consts.js';
 export class SortList extends PureComponent {
   constructor(props) {

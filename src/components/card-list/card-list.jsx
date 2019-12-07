@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {Card} from '../card/card.jsx';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer.js';
+import {ActionCreator} from '../../reducers/userManual/userManual';
 
 
 export class CardList extends PureComponent {

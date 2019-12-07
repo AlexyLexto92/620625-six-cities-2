@@ -4,7 +4,7 @@ import {App} from "../app/app.jsx";
 import offerTestObj from '../moks/mock-offer.js';
 import {Provider} from "react-redux";
 import {createStore} from "redux";
-import {reducer} from "../../reducer";
+import {reducer} from "../../reducers/reducer.js";
 jest.mock(`../map/map.jsx`);
 it(`App correctly renders after relaunch`, () => {
   const store = createStore(

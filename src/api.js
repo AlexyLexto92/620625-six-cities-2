@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {ActionCreator} from './reducer.js';
+import {ActionCreator} from './reducers/dataLoad/dataLoad';
 
 const apiUrl = `https://htmlacademy-react-2.appspot.com/six-cities`;
 const apiTimeout = 5000;

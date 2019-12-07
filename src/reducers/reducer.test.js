@@ -4,10 +4,10 @@ import {
   FilterType,
   reducer,
   Operation
-} from "./reducer";
+} from "../reducers/reducer";
 import MockAdapter from 'axios-mock-adapter';
-import offerTestObj from "./components/moks/mock-offer.js";
-import {createAPI} from './api.js';
+import offerTestObj from "../components/moks/mock-offer.js";
+import {createAPI} from '../api.js';
 
 
 it(`Action creator for changeCity returns correct action`, () => {

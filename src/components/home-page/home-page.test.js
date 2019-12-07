@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 import HomePage from "../home-page/home-page";
 import {Provider} from "react-redux";
 import {createStore} from "redux";
-import {reducer} from "../../reducer";
+import {reducer} from "../../reducers/reducer.js";
 import offerTestObj from '../moks/mock-offer.js';
 jest.mock(`../map/map.jsx`);
 it(`HomePage correctly renders after relaunch`, () => {
