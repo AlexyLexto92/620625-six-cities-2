@@ -44,10 +44,17 @@ export class Map extends PureComponent {
   }
   componentDidUpdate() {
     const {activeCard, city, offersPlace} = this.props;
+    const sliceValue = {
+      startCoordSlice: 0,
+      countCoordSlice: 2,
+      startZoomSlice: 2,
+      countZoomSlice: 3,
+    };
+    
     const cityOffers = offersPlace.filter((offer) => offer.city.name === city);
     const startCoord = Object.values(cityOffers[0].city.location);
-    const cityCoord = startCoord.slice(0,2);
-    const zoom = startCoord.slice(2,3);
+    const cityCoord = startCoord.slice(sliceValue.startCoordSlice, sliceValue.countCoordSlice);
+    const zoom = startCoord.slice(sliceValue.startZoomSlice, sliceValue.countZoomSlice);
     this.map.center = cityCoord;
     this.map.zoom = zoom;
 

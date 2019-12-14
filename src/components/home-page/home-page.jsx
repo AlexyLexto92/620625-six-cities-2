@@ -37,7 +37,7 @@ export const HomePage = (props) => {
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
         <section className="locations container">
-        {offersPlace.length> 0 &&  <CitiList/>}
+        {offersPlace.length > 0 &&  <CitiList/>}
         </section>
       </div>
       <div className="cities">
