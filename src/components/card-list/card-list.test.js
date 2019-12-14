@@ -5,7 +5,7 @@ import offerTestObj from '../moks/mock-offer.js';
 
 it(`WelcomeScreen correctly renders after relaunch`, () => {
   const tree = renderer.create(<CardList
-    offersCity={offerTestObj}
+    offersPlace={offerTestObj}
     onClick={jest.fn()}
   />)
     .toJSON();

@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import {reducer as reducerDataApi} from './dataLoad/dataLoad.js';
-import {reducer as reducerUserManual} from './userManual/userManual';
-const reducer =  combineReducers({reducerDataApi, reducerUserManual});
+import {reducer as serverData} from './dataLoad/dataLoad.js';
+import {reducer as userActions} from './userActions/userActions.js';
+const reducer = combineReducers({serverData, userActions});
 export default reducer;

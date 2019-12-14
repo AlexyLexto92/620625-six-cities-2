@@ -1,12 +1,11 @@
 import {ActionCreator as ActionCreatorData} from './dataLoad/dataLoad';
-import {ActionCreator as ActionCreatorManual} from './userManual/userManual';
+import {ActionCreator as ActionCreatorActions} from './userActions/userActions';
 const Operation = {
   loadCityOffers: () => (dispatch, _getState, api) => {
     return api.get(`/hotels`)
       .then((response) => {
         dispatch(ActionCreatorData.loadCityOffers(response.data));
-        dispatch(ActionCreatorManual.showCityList(response.data));
-        dispatch(ActionCreatorManual.showCityOffersList(response.data));
+        dispatch(ActionCreatorActions.showCityList(response.data));
       });
   },
 };

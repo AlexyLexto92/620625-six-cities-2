@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {SortList} from "./sortList";
-import {FilterType} from '../../reducers/reducer.js';
+import {FilterType} from '../../reducers/userActions/userActions';
 
 it(`Filterlist correctly renders after relaunch`, () => {
   const tree = renderer

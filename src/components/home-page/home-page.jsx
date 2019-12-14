@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 import SortList from '../sort-list/sortList.jsx';
 
 export const HomePage = (props) => {
-  const {cityOffers, city,offersCity,offersPlace } = props;
+  const {city, offersPlace} = props;
+  const cityOffers = offersPlace.filter((offer) => offer.city.name === city);
   return <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -66,10 +67,8 @@ HomePage.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    offersPlace: state.offersPlace,
-    cityOffers: state.cityOffers,
-    city: state.city,
-    offersCity: state.offersPlace,
+    offersPlace: state.serverData.offersPlace,
+    city: state.userActions.city,
   }
 }
 

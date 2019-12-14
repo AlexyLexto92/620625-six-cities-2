@@ -4,7 +4,9 @@ import {Map} from "../map/map.jsx";
 import offerTestObj from '../moks/mock-offer.js';
 it(`Map correctly renders after relaunch`, () => {
   const tree = renderer
-    .create(< Map Offers={offerTestObj}
+    .create(< Map
+      offersPlace={offerTestObj}
+      city={`Amsterdam`}
       cityOffers={offerTestObj}
       cityMap={
         [52.3709553943508, 4.89309666406198]}
