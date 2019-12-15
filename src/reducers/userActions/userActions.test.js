@@ -3,8 +3,7 @@ import {
   ActionType,
   FilterType,
   reducer
-} from "./reducer";
-import {Offers} from "./components/moks/offers.js";
+} from "../userActions/userActions";
 
 it(`Action creator for changeCity returns correct action`, () => {
   expect(ActionCreator.changeCity(`Amsterdam`)).toEqual({
@@ -27,13 +26,11 @@ it(`Action creator for changeActiveCard returns correct action`, () => {
   });
 });
 
-
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(undefined, {})).toEqual({
-    city: Offers[0].city,
-    cityOffers: Offers.filter((offer) => offer.city === Offers[0].city),
-    cityFilterType: FilterType.POPULAR,
-    activeCard: -1
+    city: ``,
+    filterType: FilterType.POPULAR,
+    activeCard: -1,
   });
 });
 
@@ -45,9 +42,8 @@ it(`Reducer return right state after changing city`, () => {
       }
   )).toEqual({
     city: `Cologne`,
-    cityOffers: Offers.filter((offer) => offer.city === `Cologne`),
-    cityFilterType: FilterType.POPULAR,
-    activeCard: -1
+    filterType: FilterType.POPULAR,
+    activeCard: -1,
   });
 });
 
@@ -58,11 +54,9 @@ it(`Reducer return right state after changing filterType`, () => {
         payload: FilterType.TOP,
       }
   )).toEqual({
-    city: Offers[0].city,
-    cityOffers: Offers.filter((offer) => offer.city === Offers[0].city).sort((a, b) =>
-      b.rating - a.rating),
-    cityFilterType: FilterType.TOP,
-    activeCard: -1
+    city: ``,
+    filterType: FilterType.TOP,
+    activeCard: -1,
   });
 });
 
@@ -73,9 +67,8 @@ it(`Reducer return right state after changing active card`, () => {
         payload: 100,
       }
   )).toEqual({
-    city: Offers[0].city,
-    cityOffers: Offers.filter((offer) => offer.city === Offers[0].city),
-    cityFilterType: FilterType.POPULAR,
-    activeCard: 100
+    city: ``,
+    filterType: FilterType.POPULAR,
+    activeCard: 100,
   });
 });

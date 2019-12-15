@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer.js';
+import {ActionCreator} from '../../reducers/userActions/userActions';
 import PropTypes from 'prop-types';
 import {getCityList} from '../../utils.js'
 
@@ -10,8 +10,8 @@ class CitiList extends PureComponent {
   }
   render() {
     const CITY_LENGTH = 6;
-    const {Offers, currentCity, changeCity} = this.props;
-    const filteredCitysList = getCityList(Offers, CITY_LENGTH);
+    const {offersPlace, currentCity, changeCity} = this.props;
+    const filteredCitysList = getCityList(offersPlace, CITY_LENGTH);
     return (<ul className="locations__list tabs__list">
       {filteredCitysList.map((city, index) => <li key={city + index}
         className="locations__item">
@@ -29,15 +29,17 @@ class CitiList extends PureComponent {
   }
 }
 CitiList.propTypes = {
-  Offers: PropTypes.arrayOf(
+  offersCity: PropTypes.arrayOf(
     PropTypes.shape({})
   ),
   currentCity: PropTypes.string,
-  changeCity: PropTypes.func
+  changeCity: PropTypes.func,
 }
 const mapStateToProps = (state) => {
   return {
-    currentCity: state.city,
+    currentCity: state.userActions.city,
+    offersPlace: state.serverData.offersPlace,
+    city: state.userActions.city,
   }
 };
 

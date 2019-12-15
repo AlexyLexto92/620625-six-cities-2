@@ -13,9 +13,11 @@ export class Map extends PureComponent {
   }
 
   componentDidMount() {
-    const { cityOffers } = this.props;
-    const city = [52.38333, 4.9];
-    const zoom = 13;
+    const {offersPlace, city} = this.props;
+    const cityOffers = offersPlace.filter((offer) => offer.city.name === city);
+    const startCoord = Object.values(cityOffers[0].location);
+    const cityCoord = startCoord.slice(0,2);
+    const zoom = startCoord.slice(2,3);
 
     const icon = L.icon({
       iconUrl: `img/pin.svg`,
@@ -23,24 +25,40 @@ export class Map extends PureComponent {
     });
 
     this.map = L.map(this.mapRef.current, {
-      center: this.city,
+      center: this.cityCoord,
       zoom: this.zoom,
       zoomControl: false,
       marker: true
     })
 
-    this.map.setView(city, zoom);
+    this.map.setView(cityCoord, zoom);
     L.tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
     }).addTo(this.map);
 
     let a = Array.from(
       cityOffers.map((elem) => {
-        return L.marker(elem.coordinates, {icon:icon});
+        return L.marker(Object.values(elem.location), {icon:icon});
       }))
     this.markersLayer = L.layerGroup(a).addTo(this.map);
   }
   componentDidUpdate() {
+    const {activeCard, city, offersPlace} = this.props;
+    const sliceValue = {
+      startCoordSlice: 0,
+      countCoordSlice: 2,
+      startZoomSlice: 2,
+      countZoomSlice: 3,
+    };
+    
+    const cityOffers = offersPlace.filter((offer) => offer.city.name === city);
+    const startCoord = Object.values(cityOffers[0].city.location);
+    const cityCoord = startCoord.slice(sliceValue.startCoordSlice, sliceValue.countCoordSlice);
+    const zoom = startCoord.slice(sliceValue.startZoomSlice, sliceValue.countZoomSlice);
+    this.map.center = cityCoord;
+    this.map.zoom = zoom;
+
+   
     const icon = L.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [26, 41],
@@ -50,16 +68,17 @@ export class Map extends PureComponent {
       iconUrl: `img/pin-active.svg`,
       iconSize: [26, 41],
     })
-    const { cityOffers, activeCard } = this.props;
+
     this.markersLayer.clearLayers();
 
     let a = Array.from(
       cityOffers.map((elem) => {
-        return L.marker(elem.coordinates, { icon: elem.id === activeCard ? iconActive : icon });
+        return L.marker(Object.values(elem.location), { icon: elem.id === activeCard ? iconActive : icon });
       }))
 
     if (activeCard >= 0) {
-      let coord = cityOffers.find(elem => elem.id === activeCard).coordinates;
+      const location= cityOffers.find(elem => elem.id === activeCard).location;
+      let coord = Object.values(location);
       this.map.panTo(coord)
       }
 
@@ -79,8 +98,9 @@ Map.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    cityOffers: state.cityOffers,
-    activeCard: state.activeCard,
+    city: state.userActions.city,
+    activeCard: state.userActions.activeCard,
+    offersPlace: state.serverData.offersPlace,
   }
 };
 

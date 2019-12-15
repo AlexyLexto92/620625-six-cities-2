@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import {connect} from "react-redux";
-import {ActionCreator, FilterType} from '../../reducer.js';
+import {ActionCreator} from '../../reducers/userActions/userActions';
 import {FILTERS} from '../../consts.js';
 export class SortList extends PureComponent {
   constructor(props) {
@@ -55,7 +55,7 @@ export class SortList extends PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    currentFilter: state.cityFilterType,
+    currentFilter: state.userActions.filterType,
   }
 };
 

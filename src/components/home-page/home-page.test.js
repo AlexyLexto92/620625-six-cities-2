@@ -1,10 +1,10 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import HomePage from "../home-page/home-page";
-import {Offers} from "../moks/offers.js";
 import {Provider} from "react-redux";
 import {createStore} from "redux";
-import {reducer} from "../../reducer";
+import reducer from "../../reducers/reducer.js";
+import offerTestObj from '../moks/mock-offer.js';
 jest.mock(`../map/map.jsx`);
 it(`HomePage correctly renders after relaunch`, () => {
   const store = createStore(
@@ -14,9 +14,9 @@ it(`HomePage correctly renders after relaunch`, () => {
   const tree = renderer
     .create(<Provider store={store}>
       <HomePage
-        Offers={Offers}
-        currentCity={Offers[0].city}
-        cityOffers={Offers.filter((offer) => offer.city === Offers[0].city)}
+        Offers={offerTestObj}
+        currentCity={offerTestObj[0].city.name}
+        cityOffers={offerTestObj.filter((offer) => offer.city === offerTestObj[0].city.name)}
       />
     </Provider>)
     .toJSON();

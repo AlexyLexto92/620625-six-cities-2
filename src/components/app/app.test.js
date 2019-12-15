@@ -1,10 +1,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {App} from "../app/app.jsx";
-import {Offers} from "../moks/offers.js";
 import {Provider} from "react-redux";
 import {createStore} from "redux";
-import {reducer} from "../../reducer";
+import reducer from "../../reducers/reducer.js";
 jest.mock(`../map/map.jsx`);
 it(`App correctly renders after relaunch`, () => {
   const store = createStore(
@@ -14,10 +13,8 @@ it(`App correctly renders after relaunch`, () => {
   const tree = renderer
     .create(<Provider store={store}>
       <App
-        cityOffers={Offers}
       />
     </Provider>)
     .toJSON();
-
   expect(tree).toMatchSnapshot();
 });
